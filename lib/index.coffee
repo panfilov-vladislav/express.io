@@ -13,7 +13,7 @@ RoomIO = require('./room').RoomIO
 express.io = io
 express.io.routeForward = middleware.routeForward
 
-session = express.session
+sessionExpress = express.session
 delete express.session
 sessionConfig = new Object
 express.session = (options) ->
@@ -22,8 +22,8 @@ express.session = (options) ->
     options.store ?= new session.MemoryStore
     options.cookie ?= new Object
     sessionConfig = options
-    return session options
-for key, value of session
+    return sessionExpress options
+for key, value of sessionExpress
     express.session[key] = value
 
 express.application.http = ->
